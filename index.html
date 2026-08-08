@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lanka Rasanjana English Academy — Live Classes, Recordings &amp; Tutes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0A2647;
+    --blue-deep:#12376B;
+    --blue:#1F5FBF;
+    --blue-bright:#2F7FE8;
+    --sky:#7FC1FF;
+    --ice:#EAF3FF;
+    --white:#FFFFFF;
+    --paper:#F6FAFF;
+    --line:#DCE9FB;
+    --ink:#0C1B33;
+    --ink-soft:#4A5D7A;
+    --gold:#FFB020;
+    --radius:18px;
+    --shadow-soft:0 10px 30px rgba(10,38,71,0.10);
+    --shadow-lift:0 24px 60px rgba(10,38,71,0.18);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Inter', sans-serif;
+    color:var(--ink);
+    background:var(--white);
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    margin:0;
+  }
+  .eyebrow{
+    font-family:'Sora', sans-serif;
+    font-weight:700;
+    font-size:0.72rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--blue);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px;height:2px;
+    background:var(--gold);
+    display:inline-block;
+    border-radius:2px;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
+  section{position:relative;}
+  ::selection{background:var(--blue-bright);color:#fff;}
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible{outline:3px solid var(--gold); outline-offset:3px; border-radius:6px;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:200;
+    background:rgba(255,255,255,0.86);
+    backdrop-filter:blur(14px) saturate(160%);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 28px; max-width:1180px; margin:0 auto;
+  }
+  .brand{display:flex; align-items:center; gap:12px;}
+  .brand-mark{
+    width:42px; height:42px; border-radius:12px;
+    background:linear-gradient(145deg,var(--blue-bright),var(--navy));
+    display:flex; align-items:center; justify-content:center;
+    color:#fff; font-family:'Fraunces',serif; font-weight:700; font-size:1.1rem;
+    box-shadow:0 6px 16px rgba(31,95,191,0.35);
+  }
+  .brand-text{line-height:1.1;}
+  .brand-text .name{font-family:'Sora',sans-serif; font-weight:700; font-size:1.02rem; color:var(--navy);}
+  .brand-text .sub{font-size:0.68rem; color:var(--ink-soft); letter-spacing:0.04em;}
+  nav.links{display:flex; gap:34px; font-family:'Sora',sans-serif; font-weight:600; font-size:0.9rem;}
+  nav.links a{position:relative; color:var(--ink); padding:6px 0;}
+  nav.links a::after{
+    content:""; position:absolute; left:0; bottom:0; width:0; height:2px;
+    background:var(--blue-bright); transition:width .25s ease;
+  }
+  nav.links a:hover::after{width:100%;}
+  .nav-actions{display:flex; align-items:center; gap:14px;}
+  .btn{
+    font-family:'Sora',sans-serif; font-weight:600; font-size:0.88rem;
+    padding:12px 22px; border-radius:999px; border:none; cursor:pointer;
+    display:inline-flex; align-items:center; gap:8px;
+    transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+  }
+  .btn-primary{background:linear-gradient(135deg,var(--blue-bright),var(--blue)); color:#fff; box-shadow:0 10px 22px rgba(47,127,232,0.35);}
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 14px 28px rgba(47,127,232,0.45);}
+  .btn-ghost{background:transparent; color:var(--navy); border:1.5px solid var(--line);}
+  .btn-ghost:hover{border-color:var(--blue); color:var(--blue);}
+  .menu-btn{display:none;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:
+      radial-gradient(1100px 520px at 82% -10%, rgba(127,193,255,0.35), transparent 60%),
+      linear-gradient(180deg, var(--paper) 0%, var(--white) 78%);
+    padding:76px 0 40px;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.05fr 0.95fr; gap:40px; align-items:center;
+  }
+  .hero h1{
+    font-size:clamp(2.3rem, 4.4vw, 3.5rem);
+    line-height:1.08; color:var(--navy); margin-top:16px;
+  }
+  .hero h1 em{font-style:italic; color:var(--blue-bright);}
+  .hero p.lead{
+    margin-top:20px; font-size:1.08rem; line-height:1.65; color:var(--ink-soft); max-width:520px;
+  }
+  .hero-cta{display:flex; gap:14px; margin-top:32px; flex-wrap:wrap;}
+  .btn-lg{padding:15px 28px; font-size:0.95rem;}
+  .hero-stats{display:flex; gap:32px; margin-top:46px; flex-wrap:wrap;}
+  .stat .num{font-family:'Fraunces',serif; font-size:1.7rem; color:var(--navy); font-weight:700;}
+  .stat .lbl{font-size:0.78rem; color:var(--ink-soft); font-family:'Sora',sans-serif;}
+
+  /* Photo + floating cards */
+  .hero-photo{position:relative; display:flex; justify-content:center; align-items:flex-end; height:100%;}
+  .photo-blob{
+    position:absolute; width:390px; height:390px; border-radius:46% 54% 60% 40% / 50% 45% 55% 50%;
+    background:linear-gradient(160deg, var(--blue-bright), var(--navy));
+    top:6%; left:50%; transform:translateX(-50%);
+    filter:blur(0px);
+    animation:blobMove 9s ease-in-out infinite;
+    opacity:0.94;
+  }
+  @keyframes blobMove{
+    0%,100%{ border-radius:46% 54% 60% 40% / 50% 45% 55% 50%; }
+    50%{ border-radius:58% 42% 44% 56% / 42% 58% 42% 58%; }
+  }
+  .photo-frame{
+    position:relative; z-index:3; width:300px; border-radius:170px 170px 26px 26px;
+    overflow:hidden; box-shadow:var(--shadow-lift); border:6px solid #fff;
+    animation:floatY 6s ease-in-out infinite;
+  }
+  .photo-frame img{width:100%; height:100%; object-fit:cover; display:block;}
+  @keyframes floatY{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(-14px);} }
+
+  .float-card{
+    position:absolute; z-index:4; background:#fff; border-radius:14px;
+    box-shadow:var(--shadow-soft); padding:12px 16px; display:flex; align-items:center; gap:10px;
+    font-family:'Sora',sans-serif; opacity:0; transform:translateY(18px) scale(.92);
+    animation:popIn .6s cubic-bezier(.34,1.56,.64,1) forwards;
+  }
+  .float-card .dot{width:9px;height:9px;border-radius:50%;background:#22C55E;box-shadow:0 0 0 4px rgba(34,197,94,.18);}
+  .float-card.live{ top:8%; left:-4%; animation-delay:.5s; }
+  .float-card.live .badge{color:#DC2626; font-weight:700; font-size:.78rem;}
+  .float-card.live .sub{font-size:.68rem; color:var(--ink-soft);}
+  .float-card.notif{ top:42%; right:-8%; animation-delay:1s; text-align:left;}
+  .float-card.notif .title{font-weight:700; font-size:.8rem; color:var(--navy);}
+  .float-card.notif .sub{font-size:.7rem; color:var(--ink-soft); margin-top:1px;}
+  .float-card.notif .ico{width:34px;height:34px;border-radius:10px;background:var(--ice);display:flex;align-items:center;justify-content:center;font-size:1.05rem;flex-shrink:0;}
+  .float-card.streak{ bottom:6%; left:-2%; animation-delay:1.5s; }
+  .float-card.streak .num{font-family:'Fraunces',serif; font-weight:700; color:var(--navy); font-size:1.2rem;}
+  .float-card.streak .lbl{font-size:.66rem; color:var(--ink-soft);}
+  @keyframes popIn{ to{opacity:1; transform:translateY(0) scale(1);} }
+  .float-card{ animation-name:popIn, bob; animation-duration:.6s, 5s; animation-timing-function:cubic-bezier(.34,1.56,.64,1), ease-in-out; animation-iteration-count:1, infinite; animation-fill-mode:forwards, none; animation-delay: inherit, 1.2s;}
+
+  @media (max-width:980px){
+    .hero-grid{grid-template-columns:1fr; text-align:center;}
+    .hero p.lead{margin-left:auto; margin-right:auto;}
+    .hero-cta, .hero-stats{justify-content:center;}
+    .hero-photo{margin-top:20px;}
+    .float-card.live{left:2%;}
+    .float-card.notif{right:2%;}
+  }
+
+  /* ---------- MARQUEE ---------- */
+  .marquee{
+    background:var(--navy); color:#fff; padding:13px 0; overflow:hidden; white-space:nowrap;
+  }
+  .marquee-track{display:inline-flex; gap:48px; animation:scroll 26s linear infinite; font-family:'Sora',sans-serif; font-size:.82rem; letter-spacing:.03em;}
+  .marquee-track span{opacity:.9;}
+  @keyframes scroll{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+
+  /* ---------- SECTION HEAD ---------- */
+  .sec-head{max-width:640px; margin-bottom:52px;}
+  .sec-head.center{margin-left:auto; margin-right:auto; text-align:center;}
+  .sec-head h2{font-size:clamp(1.7rem,3vw,2.4rem); color:var(--navy); margin-top:14px;}
+  .sec-head p{color:var(--ink-soft); margin-top:14px; line-height:1.6; font-size:1.02rem;}
+
+  /* ---------- HOW IT WORKS ---------- */
+  .how{padding:100px 0 90px; background:var(--white);}
+  .steps{display:grid; grid-template-columns:repeat(4,1fr); gap:0; counter-reset:step; position:relative;}
+  .steps::before{
+    content:""; position:absolute; top:34px; left:60px; right:60px; height:2px;
+    background:repeating-linear-gradient(90deg, var(--line) 0 10px, transparent 10px 18px);
+  }
+  .step{position:relative; padding:0 18px; text-align:left;}
+  .step .idx{
+    counter-increment:step; width:68px; height:68px; border-radius:50%;
+    background:var(--white); border:2px solid var(--line); color:var(--blue);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces',serif; font-weight:700; font-size:1.3rem; position:relative; z-index:2;
+    transition:.3s;
+  }
+  .step:nth-child(1) .idx{border-color:var(--blue-bright); color:var(--blue-bright); background:var(--ice);}
+  .step h3{font-size:1.06rem; margin-top:20px; color:var(--navy); font-family:'Sora',sans-serif;}
+  .step p{font-size:.9rem; color:var(--ink-soft); margin-top:8px; line-height:1.55;}
+  @media (max-width:900px){
+    .steps{grid-template-columns:1fr 1fr; row-gap:40px;}
+    .steps::before{display:none;}
+  }
+
+  /* ---------- FEATURES ---------- */
+  .features{padding:20px 0 100px; background:linear-gradient(180deg,var(--white),var(--paper));}
+  .feat-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+  .feat-card{
+    background:#fff; border:1px solid var(--line); border-radius:var(--radius);
+    padding:30px 26px; transition:transform .25s ease, box-shadow .25s ease, border-color .25s;
+  }
+  .feat-card:hover{transform:translateY(-6px); box-shadow:var(--shadow-lift); border-color:transparent;}
+  .feat-ico{
+    width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(135deg,var(--ice),#fff); font-size:1.4rem; margin-bottom:18px;
+    box-shadow:inset 0 0 0 1px var(--line);
+  }
+  .feat-card h3{font-family:'Sora',sans-serif; font-size:1.05rem; color:var(--navy); margin-bottom:10px;}
+  .feat-card p{font-size:.9rem; color:var(--ink-soft); line-height:1.6;}
+  @media (max-width:900px){ .feat-grid{grid-template-columns:1fr 1fr;} }
+  @media (max-width:600px){ .feat-grid{grid-template-columns:1fr;} }
+
+  /* ---------- ABOUT TEACHER ---------- */
+  .about{padding:100px 0; background:var(--navy); color:#fff; position:relative; overflow:hidden;}
+  .about::before{
+    content:""; position:absolute; width:520px; height:520px; border-radius:50%;
+    background:radial-gradient(circle, rgba(47,127,232,0.35), transparent 70%);
+    top:-180px; right:-160px;
+  }
+  .about-grid{display:grid; grid-template-columns:0.8fr 1.2fr; gap:60px; align-items:center; position:relative;}
+  .about-photo{
+    position:relative; border-radius:24px; overflow:hidden; border:1px solid rgba(255,255,255,0.15);
+    box-shadow:0 30px 70px rgba(0,0,0,0.35);
+  }
+  .about-photo img{width:100%; display:block; aspect-ratio:266/620; object-fit:cover; object-position:top;}
+  .about-photo .tag{
+    position:absolute; bottom:16px; left:16px; right:16px; background:rgba(10,38,71,0.72);
+    backdrop-filter:blur(6px); border-radius:12px; padding:12px 14px; font-family:'Sora',sans-serif;
+  }
+  .about-photo .tag .n{font-weight:700; font-size:.95rem;}
+  .about-photo .tag .r{font-size:.72rem; color:var(--sky); margin-top:2px;}
+  .about .eyebrow{color:var(--sky);}
+  .about .eyebrow::before{background:var(--gold);}
+  .about h2{color:#fff; font-size:clamp(1.7rem,3vw,2.3rem); margin-top:14px;}
+  .about p.bio{margin-top:20px; color:#C9D8EF; line-height:1.75; font-size:1rem;}
+  .about-badges{display:flex; gap:14px; margin-top:30px; flex-wrap:wrap;}
+  .about-badges .b{
+    background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.16);
+    padding:10px 16px; border-radius:12px; font-family:'Sora',sans-serif; font-size:.82rem; display:flex; gap:8px; align-items:center;
+  }
+  @media (max-width:900px){ .about-grid{grid-template-columns:1fr;} .about-photo{max-width:280px; margin:0 auto;} }
+
+  /* ---------- COURSES ---------- */
+  .courses{padding:100px 0; background:var(--white);}
+  .course-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .course-card{
+    border-radius:var(--radius); overflow:hidden; border:1px solid var(--line);
+    display:flex; flex-direction:column; transition:.25s;
+  }
+  .course-card:hover{box-shadow:var(--shadow-lift); transform:translateY(-4px);}
+  .course-top{padding:26px 24px 0; }
+  .course-tag{
+    display:inline-block; font-family:'Sora',sans-serif; font-size:.68rem; font-weight:700;
+    letter-spacing:.04em; text-transform:uppercase; padding:5px 11px; border-radius:999px;
+    background:var(--ice); color:var(--blue);
+  }
+  .course-card h3{font-family:'Sora',sans-serif; font-size:1.12rem; color:var(--navy); margin-top:16px;}
+  .course-card p{font-size:.87rem; color:var(--ink-soft); margin-top:8px; line-height:1.55; padding:0 24px;}
+  .course-meta{
+    margin-top:auto; display:flex; justify-content:space-between; align-items:center;
+    padding:18px 24px; border-top:1px solid var(--line); font-family:'Sora',sans-serif; font-size:.82rem;
+  }
+  .course-meta .price{color:var(--navy); font-weight:700;}
+  .course-meta a{color:var(--blue); font-weight:600; display:flex; align-items:center; gap:5px;}
+  .course-meta a:hover{text-decoration:underline;}
+
+  /* ---------- LIBRARY PREVIEW ---------- */
+  .library{padding:100px 0; background:var(--paper);}
+  .lib-panel{
+    background:#fff; border-radius:24px; border:1px solid var(--line); box-shadow:var(--shadow-soft);
+    display:grid; grid-template-columns:1fr 1fr; overflow:hidden;
+  }
+  .lib-left{padding:52px; display:flex; flex-direction:column; justify-content:center;}
+  .lib-left h2{font-size:clamp(1.5rem,2.6vw,2rem); color:var(--navy);}
+  .lib-left p{color:var(--ink-soft); margin-top:16px; line-height:1.65;}
+  .lib-list{margin-top:24px; display:flex; flex-direction:column; gap:14px;}
+  .lib-list li{list-style:none; display:flex; gap:12px; align-items:flex-start; font-size:.92rem; color:var(--ink);}
+  .lib-list .chk{
+    width:20px;height:20px;border-radius:50%;background:var(--blue-bright); color:#fff; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center; font-size:.7rem; margin-top:2px;
+  }
+  .lib-right{background:linear-gradient(160deg,var(--blue-deep),var(--navy)); padding:36px; display:flex; flex-direction:column; gap:14px; justify-content:center;}
+  .lesson-row{
+    background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12);
+    border-radius:14px; padding:14px 16px; display:flex; align-items:center; gap:14px; color:#fff;
+    transition:.2s;
+  }
+  .lesson-row:hover{background:rgba(255,255,255,0.12); transform:translateX(4px);}
+  .lesson-row .play{
+    width:38px; height:38px; border-radius:50%; background:var(--blue-bright); flex-shrink:0;
+    display:flex; align-items:center; justify-content:center; font-size:.8rem;
+  }
+  .lesson-row .t{font-family:'Sora',sans-serif; font-size:.88rem; font-weight:600;}
+  .lesson-row .d{font-size:.72rem; color:var(--sky); margin-top:2px;}
+  .lesson-row .len{margin-left:auto; font-size:.76rem; color:#C9D8EF; font-family:'Sora',sans-serif;}
+  @media (max-width:900px){ .lib-panel{grid-template-columns:1fr;} }
+
+  /* ---------- TESTIMONIALS ---------- */
+  .wall{padding:100px 0; background:var(--white);}
+  .wall-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+  .quote-card{
+    background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); padding:28px;
+  }
+  .stars{color:var(--gold); font-size:.85rem; letter-spacing:2px;}
+  .quote-card p{margin-top:14px; font-size:.92rem; color:var(--ink); line-height:1.65;}
+  .qwho{display:flex; align-items:center; gap:12px; margin-top:20px;}
+  .qwho .av{
+    width:38px;height:38px;border-radius:50%; background:linear-gradient(135deg,var(--blue-bright),var(--navy));
+    color:#fff; display:flex; align-items:center; justify-content:center; font-family:'Sora',sans-serif; font-weight:700; font-size:.8rem;
+  }
+  .qwho .nm{font-family:'Sora',sans-serif; font-weight:700; font-size:.84rem; color:var(--navy);}
+  .qwho .rl{font-size:.72rem; color:var(--ink-soft);}
+  @media (max-width:900px){ .wall-grid{grid-template-columns:1fr;} }
+
+  /* ---------- CTA ---------- */
+  .cta{
+    margin:0 auto 100px; max-width:1180px; padding:0 28px;
+  }
+  .cta-inner{
+    background:linear-gradient(120deg,var(--blue-deep),var(--navy) 60%);
+    border-radius:28px; padding:60px 50px; display:flex; align-items:center; justify-content:space-between;
+    gap:30px; color:#fff; position:relative; overflow:hidden;
+  }
+  .cta-inner::after{
+    content:""; position:absolute; width:340px; height:340px; border-radius:50%;
+    background:radial-gradient(circle, rgba(127,193,255,0.3), transparent 70%); right:-100px; bottom:-140px;
+  }
+  .cta-inner h2{font-size:clamp(1.5rem,2.6vw,2.1rem); max-width:480px; position:relative;}
+  .cta-inner p{color:#C9D8EF; margin-top:12px; max-width:440px; position:relative;}
+  .cta-actions{display:flex; gap:14px; flex-wrap:wrap; position:relative;}
+  @media (max-width:800px){ .cta-inner{flex-direction:column; text-align:center; padding:44px 28px;} .cta-inner p{margin-left:auto;margin-right:auto;} }
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--navy); color:#C9D8EF; padding:64px 0 26px;}
+  .foot-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px;}
+  .foot-brand .brand-text .name{color:#fff;}
+  .foot-brand p{font-size:.86rem; margin-top:14px; line-height:1.6; color:#9CB2D6; max-width:280px;}
+  footer h4{font-family:'Sora',sans-serif; font-size:.84rem; color:#fff; margin-bottom:16px; letter-spacing:.02em;}
+  footer ul{list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:11px;}
+  footer ul a{font-size:.86rem; color:#9CB2D6; transition:.2s;}
+  footer ul a:hover{color:#fff;}
+  .foot-bottom{
+    margin-top:54px; padding-top:22px; border-top:1px solid rgba(255,255,255,0.12);
+    display:flex; justify-content:space-between; font-size:.78rem; color:#7E93B8; flex-wrap:wrap; gap:10px;
+  }
+  @media (max-width:800px){ .foot-grid{grid-template-columns:1fr 1fr;} }
+
+  /* ---------- POPUP MODAL (live class) ---------- */
+  .popup-overlay{
+    position:fixed; inset:0; background:rgba(10,20,40,0.5); backdrop-filter:blur(3px);
+    display:flex; align-items:center; justify-content:center; z-index:999;
+    opacity:0; pointer-events:none; transition:opacity .35s ease;
+  }
+  .popup-overlay.show{opacity:1; pointer-events:auto;}
+  .popup-card{
+    background:#fff; border-radius:22px; width:min(400px, 90vw); padding:34px 30px 28px;
+    text-align:center; box-shadow:var(--shadow-lift); position:relative;
+    transform:translateY(24px) scale(.94); opacity:0; transition:transform .4s cubic-bezier(.34,1.56,.64,1), opacity .4s ease;
+  }
+  .popup-overlay.show .popup-card{transform:translateY(0) scale(1); opacity:1;}
+  .popup-close{
+    position:absolute; top:14px; right:14px; width:30px; height:30px; border-radius:50%;
+    border:none; background:var(--ice); color:var(--navy); cursor:pointer; font-size:1rem;
+  }
+  .popup-ico{
+    width:60px; height:60px; border-radius:50%; background:linear-gradient(135deg,var(--blue-bright),var(--navy));
+    color:#fff; display:flex; align-items:center; justify-content:center; margin:0 auto 18px; font-size:1.5rem;
+    animation:ring 1.6s ease-in-out infinite;
+  }
+  @keyframes ring{ 0%,100%{box-shadow:0 0 0 0 rgba(47,127,232,.35);} 50%{box-shadow:0 0 0 14px rgba(47,127,232,0);} }
+  .popup-card h3{font-size:1.2rem; color:var(--navy);}
+  .popup-card p{font-size:.9rem; color:var(--ink-soft); margin-top:10px; line-height:1.55;}
+  .popup-card .btn{margin-top:20px; width:100%; justify-content:center;}
+
+  /* reveal on scroll */
+  .reveal{opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  @media (max-width:900px){
+    nav.links{display:none;}
+    .menu-btn{display:inline-flex; background:none; border:1px solid var(--line); border-radius:10px; padding:9px 11px; cursor:pointer;}
+    .nav-actions .btn-ghost{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header>
+  <div class="nav">
+    <div class="brand">
+      <div class="brand-mark">LR</div>
+      <div class="brand-text">
+        <div class="name">Lanka Rasanjana</div>
+        <div class="sub">English Learning Academy</div>
+      </div>
+    </div>
+    <nav class="links">
+      <a href="#how">How it works</a>
+      <a href="#features">Platform</a>
+      <a href="#about">About Sir</a>
+      <a href="#courses">Classes</a>
+      <a href="#library">Recordings</a>
+      <a href="#reviews">Reviews</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="#" class="btn btn-ghost">Student Login</a>
+      <a href="#courses" class="btn btn-primary">Enroll Now</a>
+    </div>
+    <button class="menu-btn" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">English Made Simple · LMS for Sir Rasanjana's Classes</div>
+      <h1>Learn English live, <em>revise anytime</em>, never miss a lesson.</h1>
+      <p class="lead">One place for every class, recording and tute from Lanka Rasanjana — join live sessions, replay any lesson you missed, and download notes in seconds. Built for students who are serious about their English.</p>
+      <div class="hero-cta">
+        <a href="#courses" class="btn btn-primary btn-lg">🔴 Join Today's Live Class</a>
+        <a href="#library" class="btn btn-ghost btn-lg">▶ Browse Recorded Lessons</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="num">4,200+</div><div class="lbl">Active students</div></div>
+        <div class="stat"><div class="num">380+</div><div class="lbl">Recorded lessons</div></div>
+        <div class="stat"><div class="num">12 yrs</div><div class="lbl">Teaching experience</div></div>
+      </div>
+    </div>
+
+    <div class="hero-photo">
+      <div class="photo-blob" aria-hidden="true"></div>
+      <div class="float-card live" style="animation-delay:.5s;">
+        <span class="dot"></span>
+        <div>
+          <div class="badge">● LIVE NOW</div>
+          <div class="sub">Spoken English — Batch 04</div>
+        </div>
+      </div>
+      <div class="float-card notif" style="animation-delay:1s;">
+        <div class="ico">📘</div>
+        <div>
+          <div class="title">New tute uploaded</div>
+          <div class="sub">Grammar Unit 09 · PDF</div>
+        </div>
+      </div>
+      <div class="float-card streak" style="animation-delay:1.5s;">
+        <div class="num">92%</div>
+        <div class="lbl">Avg. attendance rate</div>
+      </div>
+      <div class="photo-frame">
+        <img src="assets/rasanjana-sir.jpeg" alt="Lanka Rasanjana, English teacher, standing with a microphone ready to teach" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>🔴 Live Spoken English — Mon · Wed · Fri, 6.30 PM</span>
+    <span>📚 O/L English Paper Class every Saturday</span>
+    <span>🎧 A/L English — new batch starting soon</span>
+    <span>📝 Free tutes for all registered students</span>
+    <span>🔴 Live Spoken English — Mon · Wed · Fri, 6.30 PM</span>
+    <span>📚 O/L English Paper Class every Saturday</span>
+    <span>🎧 A/L English — new batch starting soon</span>
+    <span>📝 Free tutes for all registered students</span>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="wrap">
+    <div class="sec-head center">
+      <div class="eyebrow" style="justify-content:center;">The Flow</div>
+      <h2>From enrolling to exam-ready, in four steps</h2>
+      <p>The whole class, organised the way a real course runs — nothing to hunt for, nothing to miss.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="idx">01</div><h3>Enroll in a class</h3><p>Pick your grade or exam batch — O/L, A/L, or Spoken English — and register in under a minute.</p></div>
+      <div class="step reveal"><div class="idx">02</div><h3>Join the live session</h3><p>Get a reminder before every class and join straight from your dashboard, no extra apps.</p></div>
+      <div class="step reveal"><div class="idx">03</div><h3>Rewatch anytime</h3><p>Every class is recorded automatically and added to your library the same day.</p></div>
+      <div class="step reveal"><div class="idx">04</div><h3>Practice with tutes</h3><p>Download notes, worksheets and past papers to revise at your own pace.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">The Platform</div>
+      <h2>Everything a modern English classroom needs</h2>
+      <p>Built specifically for running Sir Rasanjana's classes online — simple for students, easy for Sir to manage.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card reveal">
+        <div class="feat-ico">🎥</div>
+        <h3>Live online classes</h3>
+        <p>HD live sessions with raised-hand Q&amp;A, live captions and instant attendance tracking.</p>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-ico">📼</div>
+        <h3>Recorded lesson library</h3>
+        <p>Every class saved automatically and organised by grade, unit and date — searchable in seconds.</p>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-ico">📄</div>
+        <h3>Tutes &amp; downloads</h3>
+        <p>Notes, worksheets and past papers ready to download as soon as class ends.</p>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-ico">📊</div>
+        <h3>Progress tracking</h3>
+        <p>Students and parents can see attendance, completed lessons and marks in one clear dashboard.</p>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-ico">🔔</div>
+        <h3>Class reminders</h3>
+        <p>Automatic pop-up and SMS reminders so no one misses a live session again.</p>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-ico">📱</div>
+        <h3>Works on any device</h3>
+        <p>Phone, tablet or laptop — the same smooth experience for every student, everywhere.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT TEACHER -->
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-photo reveal">
+      <img src="assets/rasanjana-sir.jpeg" alt="Lanka Rasanjana teaching with a microphone" />
+      <div class="tag">
+        <div class="n">Lanka Rasanjana</div>
+        <div class="r">Founder &amp; Lead English Instructor</div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="eyebrow">Meet Your Teacher</div>
+      <h2>Teaching English to thousands of students, one clear lesson at a time.</h2>
+      <p class="bio">Sir Rasanjana has spent over a decade helping school students build real confidence in English — for exams and for everyday life. His classes mix grammar fundamentals with spoken practice, so students don't just pass papers, they actually speak the language. This platform brings that same classroom energy online, live every week.</p>
+      <div class="about-badges">
+        <div class="b">🎓 12+ years teaching</div>
+        <div class="b">👨‍🎓 4,200+ students taught</div>
+        <div class="b">🏆 O/L &amp; A/L specialist</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COURSES -->
+<section class="courses" id="courses">
+  <div class="wrap">
+    <div class="sec-head center">
+      <div class="eyebrow" style="justify-content:center;">Classes</div>
+      <h2>Choose the batch that fits you</h2>
+      <p>Every batch includes live classes, full recordings and printable tutes.</p>
+    </div>
+    <div class="course-grid">
+      <div class="course-card reveal">
+        <div class="course-top">
+          <span class="course-tag">Grade 6 – 9</span>
+          <h3>Junior English Foundation</h3>
+          <p>Grammar basics, vocabulary building and reading comprehension for younger students.</p>
+        </div>
+        <div class="course-meta"><span class="price">Rs. 1,500 / mo</span><a href="#">Enroll →</a></div>
+      </div>
+      <div class="course-card reveal">
+        <div class="course-top">
+          <span class="course-tag">O/L</span>
+          <h3>O/L English Paper Class</h3>
+          <p>Full syllabus coverage with past-paper practice and weekly model exams.</p>
+        </div>
+        <div class="course-meta"><span class="price">Rs. 2,000 / mo</span><a href="#">Enroll →</a></div>
+      </div>
+      <div class="course-card reveal">
+        <div class="course-top">
+          <span class="course-tag">A/L · General English</span>
+          <h3>A/L English Mastery</h3>
+          <p>Advanced grammar, essay writing and exam technique for A/L students.</p>
+        </div>
+        <div class="course-meta"><span class="price">Rs. 2,500 / mo</span><a href="#">Enroll →</a></div>
+      </div>
+      <div class="course-card reveal">
+        <div class="course-top">
+          <span class="course-tag">All Ages</span>
+          <h3>Spoken English Club</h3>
+          <p>Conversation-focused sessions built around confidence and everyday fluency.</p>
+        </div>
+        <div class="course-meta"><span class="price">Rs. 1,800 / mo</span><a href="#">Enroll →</a></div>
+      </div>
+      <div class="course-card reveal">
+        <div class="course-top">
+          <span class="course-tag">Intensive</span>
+          <h3>Exam Crash Course</h3>
+          <p>A focused 4-week revision sprint before O/L and A/L exams.</p>
+        </div>
+        <div class="course-meta"><span class="price">Rs. 3,000</span><a href="#">Enroll →</a></div>
+      </div>
+      <div class="course-card reveal">
+        <div class="course-top">
+          <span class="course-tag">One-to-One</span>
+          <h3>Private Tuition</h3>
+          <p>Personalised sessions for students who need focused, individual attention.</p>
+        </div>
+        <div class="course-meta"><span class="price">On request</span><a href="#">Enroll →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIBRARY -->
+<section class="library" id="library">
+  <div class="wrap">
+    <div class="lib-panel reveal">
+      <div class="lib-left">
+        <div class="eyebrow">Recorded Lessons</div>
+        <h2 style="margin-top:14px;">Missed a class? It's already waiting for you.</h2>
+        <p>Every live session is uploaded to your library the same day — organised by grade and unit, so revision is never a search-and-hope exercise.</p>
+        <ul class="lib-list">
+          <li><span class="chk">✓</span> Unlimited replays for enrolled students</li>
+          <li><span class="chk">✓</span> Searchable by grade, unit and topic</li>
+          <li><span class="chk">✓</span> Downloadable tutes attached to every lesson</li>
+        </ul>
+        <a href="#" class="btn btn-primary" style="margin-top:26px; width:fit-content;">Go to My Library</a>
+      </div>
+      <div class="lib-right">
+        <div class="lesson-row"><div class="play">▶</div><div><div class="t">Tenses — Present Perfect</div><div class="d">Grade 10 · Unit 04</div></div><div class="len">38 min</div></div>
+        <div class="lesson-row"><div class="play">▶</div><div><div class="t">Essay Writing Techniques</div><div class="d">A/L · Unit 11</div></div><div class="len">51 min</div></div>
+        <div class="lesson-row"><div class="play">▶</div><div><div class="t">Everyday Conversation Practice</div><div class="d">Spoken English · Wk 6</div></div><div class="len">44 min</div></div>
+        <div class="lesson-row"><div class="play">▶</div><div><div class="t">Comprehension Strategies</div><div class="d">O/L · Unit 08</div></div><div class="len">40 min</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="wall" id="reviews">
+  <div class="wrap">
+    <div class="sec-head center">
+      <div class="eyebrow" style="justify-content:center;">Student Voices</div>
+      <h2>What students and parents say</h2>
+    </div>
+    <div class="wall-grid">
+      <div class="quote-card reveal">
+        <div class="stars">★★★★★</div>
+        <p>"I missed classes often because of school activities, but the recordings meant I never fell behind. My grammar improved so much this year."</p>
+        <div class="qwho"><div class="av">DP</div><div><div class="nm">Dilshan P.</div><div class="rl">Grade 11 student</div></div></div>
+      </div>
+      <div class="quote-card reveal">
+        <div class="stars">★★★★★</div>
+        <p>"As a parent I can actually see my daughter's attendance and progress. It's the first tuition class that felt this organised."</p>
+        <div class="qwho"><div class="av">NF</div><div><div class="nm">Nadeeka F.</div><div class="rl">Parent</div></div></div>
+      </div>
+      <div class="quote-card reveal">
+        <div class="stars">★★★★★</div>
+        <p>"Sir explains everything so clearly, and having the tutes ready to download after class made revision so much easier before my A/Ls."</p>
+        <div class="qwho"><div class="av">TR</div><div><div class="nm">Tharindu R.</div><div class="rl">A/L student</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="cta-inner reveal">
+    <div>
+      <h2>Ready to join Sir Rasanjana's next live class?</h2>
+      <p>Registration takes less than two minutes — pick your batch and you're in.</p>
+    </div>
+    <div class="cta-actions">
+      <a href="#courses" class="btn btn-primary btn-lg">Enroll Now</a>
+      <a href="#" class="btn btn-ghost btn-lg" style="border-color:rgba(255,255,255,0.3); color:#fff;">Contact on WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-brand">
+      <div class="brand">
+        <div class="brand-mark">LR</div>
+        <div class="brand-text"><div class="name">Lanka Rasanjana</div><div class="sub" style="color:#9CB2D6;">English Learning Academy</div></div>
+      </div>
+      <p>A live-class and recorded-lesson platform built for students learning English with Sir Rasanjana — anywhere, anytime.</p>
+    </div>
+    <div>
+      <h4>Platform</h4>
+      <ul>
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#library">Recordings</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Classes</h4>
+      <ul>
+        <li><a href="#courses">O/L English</a></li>
+        <li><a href="#courses">A/L English</a></li>
+        <li><a href="#courses">Spoken English</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="#">WhatsApp: 077 123 4567</a></li>
+        <li><a href="#">hello@lankarasanjana.lk</a></li>
+        <li><a href="#">Facebook Page</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap foot-bottom">
+    <div>© 2026 Lanka Rasanjana English Academy. All rights reserved.</div>
+    <div>Made for students who show up.</div>
+  </div>
+</footer>
+
+<!-- POPUP -->
+<div class="popup-overlay" id="popupOverlay">
+  <div class="popup-card">
+    <button class="popup-close" id="popupClose" aria-label="Close">✕</button>
+    <div class="popup-ico">🔴</div>
+    <h3>Live class starting soon!</h3>
+    <p>"Spoken English — Batch 04" begins in 5 minutes. Join now so you don't miss the warm-up conversation round.</p>
+    <a href="#courses" class="btn btn-primary">Join the Live Class</a>
+  </div>
+</div>
+
+<script>
+  // Reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  }, {threshold:0.15});
+  revealEls.forEach(el=>io.observe(el));
+
+  // Live class popup notification
+  const overlay = document.getElementById('popupOverlay');
+  const closeBtn = document.getElementById('popupClose');
+  function openPopup(){ overlay.classList.add('show'); }
+  function closePopup(){ overlay.classList.remove('show'); }
+  setTimeout(openPopup, 3200);
+  closeBtn.addEventListener('click', closePopup);
+  overlay.addEventListener('click', (e)=>{ if(e.target===overlay) closePopup(); });
+  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closePopup(); });
+</script>
+
+</body>
+</html>
