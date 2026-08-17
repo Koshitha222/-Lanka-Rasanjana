@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#0A2647" />
+<title>Student Login — Lanka Rasanjana English Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0A2647;
+    --blue-deep:#12376B;
+    --blue:#1F5FBF;
+    --blue-bright:#2F7FE8;
+    --sky:#7FC1FF;
+    --ice:#EAF3FF;
+    --white:#FFFFFF;
+    --paper:#F6FAFF;
+    --line:#DCE9FB;
+    --ink:#0C1B33;
+    --ink-soft:#4A5D7A;
+    --gold:#FFB020;
+    --radius:18px;
+    --shadow-soft:0 10px 30px rgba(10,38,71,0.10);
+    --shadow-lift:0 24px 60px rgba(10,38,71,0.18);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; min-height:100vh; display:flex; flex-direction:column;
+    font-family:'Inter', sans-serif; color:var(--ink); background:var(--paper);
+  }
+  h1,h2{font-family:'Fraunces', serif; font-weight:600; letter-spacing:-0.01em; margin:0;}
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 28px; width:100%;}
+  ::selection{background:var(--blue-bright); color:#fff;}
+  a:focus-visible, button:focus-visible, input:focus-visible{outline:3px solid var(--gold); outline-offset:2px; border-radius:6px;}
+  @media (prefers-reduced-motion: reduce){ *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;} }
+
+  .eyebrow{
+    font-family:'Sora', sans-serif; font-weight:700; font-size:0.72rem; letter-spacing:0.16em;
+    text-transform:uppercase; color:var(--blue); display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{content:""; width:22px; height:2px; background:var(--gold); display:inline-block; border-radius:2px;}
+  .eyebrow.on-dark{color:var(--sky);}
+  .eyebrow.on-dark::before{background:var(--gold);}
+
+  .btn{
+    font-family:'Sora',sans-serif; font-weight:600; font-size:0.9rem;
+    padding:13px 22px; border-radius:999px; border:none; cursor:pointer;
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    transition:transform .2s ease, box-shadow .2s ease, background .2s ease; text-align:center;
+  }
+  .btn-primary{background:linear-gradient(135deg,var(--blue-bright),var(--blue)); color:#fff; box-shadow:0 10px 22px rgba(47,127,232,0.35);}
+  .btn-primary:hover:not(:disabled){transform:translateY(-2px); box-shadow:0 14px 28px rgba(47,127,232,0.45);}
+  .btn-primary:disabled{opacity:.75; cursor:default; transform:none;}
+  .btn-ghost{background:transparent; color:var(--navy); border:1.5px solid var(--line);}
+  .btn-ghost:hover{border-color:var(--blue); color:var(--blue);}
+  .btn-block{width:100%;}
+
+  /* ---------- HEADER ---------- */
+  header{
+    background:rgba(255,255,255,0.9); backdrop-filter:blur(14px) saturate(160%);
+    border-bottom:1px solid var(--line); position:sticky; top:0; z-index:50;
+  }
+  .auth-nav{display:flex; align-items:center; justify-content:space-between; padding:16px 0;}
+  .brand{display:flex; align-items:center; gap:12px;}
+  .brand-mark{
+    width:42px; height:42px; border-radius:12px; flex-shrink:0;
+    background:linear-gradient(145deg,var(--blue-bright),var(--navy));
+    display:flex; align-items:center; justify-content:center;
+    color:#fff; font-family:'Fraunces',serif; font-weight:700; font-size:1.1rem;
+    box-shadow:0 6px 16px rgba(31,95,191,0.35);
+  }
+  .brand-text{line-height:1.1;}
+  .brand-text .name{font-family:'Sora',sans-serif; font-weight:700; font-size:1.02rem; color:var(--navy);}
+  .brand-text .sub{font-size:0.68rem; color:var(--ink-soft); letter-spacing:0.04em;}
+  .back-link{font-family:'Sora',sans-serif; font-weight:600; font-size:.86rem; color:var(--blue); white-space:nowrap;}
+  .back-link:hover{text-decoration:underline;}
+  @media (max-width:480px){ .brand-text .sub{display:none;} .back-link{font-size:.78rem;} }
+
+  /* ---------- SHELL / SPLIT CARD ---------- */
+  .auth-shell{flex:1; display:flex; align-items:center; justify-content:center; padding:40px 20px;}
+  .auth-grid{
+    display:grid; grid-template-columns:1fr 1fr; max-width:980px; width:100%;
+    background:#fff; border-radius:28px; overflow:hidden; box-shadow:var(--shadow-lift);
+    animation:fadeUp .6s ease both;
+  }
+  @keyframes fadeUp{ from{opacity:0; transform:translateY(16px);} to{opacity:1; transform:translateY(0);} }
+
+  .auth-side{
+    position:relative; overflow:hidden; padding:48px 42px;
+    background:linear-gradient(165deg, var(--blue-deep) 0%, var(--navy) 75%);
+    color:#fff; display:flex; flex-direction:column; justify-content:center;
+  }
+  .auth-side::before{
+    content:""; position:absolute; width:360px; height:360px; border-radius:50%;
+    background:radial-gradient(circle, rgba(127,193,255,0.32), transparent 70%);
+    top:-140px; right:-120px;
+  }
+  .auth-side::after{
+    content:""; position:absolute; width:260px; height:260px; border-radius:50%;
+    background:radial-gradient(circle, rgba(47,127,232,0.28), transparent 70%);
+    bottom:-100px; left:-80px;
+  }
+  .auth-side-inner{position:relative;}
+  .auth-side h1{font-size:1.7rem; line-height:1.25; margin-top:14px;}
+  .auth-side p{color:#C9D8EF; margin-top:14px; line-height:1.65; font-size:.95rem;}
+  .side-list{list-style:none; margin:26px 0 0; padding:0; display:flex; flex-direction:column; gap:12px;}
+  .side-list li{display:flex; align-items:center; gap:10px; font-size:.88rem; color:#E5EEFB;}
+  .side-list .chk{
+    width:20px; height:20px; border-radius:50%; background:var(--blue-bright); color:#fff; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center; font-size:.65rem;
+  }
+  .side-stats{display:flex; gap:30px; margin-top:32px;}
+  .side-stats strong{display:block; font-family:'Fraunces',serif; font-size:1.4rem; font-weight:700;}
+  .side-stats span{font-size:.72rem; color:var(--sky); font-family:'Sora',sans-serif;}
+
+  .auth-form-panel{padding:48px 42px; display:flex; align-items:center;}
+  .auth-card{width:100%; max-width:360px; margin:0 auto;}
+  .auth-card h2{font-size:1.6rem; color:var(--navy);}
+  .auth-sub{color:var(--ink-soft); font-size:.92rem; margin-top:8px; line-height:1.5;}
+
+  .form-msg{
+    background:var(--ice); border:1px solid var(--line); color:var(--blue-deep);
+    font-size:.85rem; padding:12px 14px; border-radius:12px; margin:18px 0 4px; line-height:1.55;
+  }
+
+  form{margin-top:24px;}
+  .field{display:block; font-family:'Sora',sans-serif; font-weight:600; font-size:.82rem; color:var(--navy); margin-bottom:18px;}
+  .field input{
+    width:100%; margin-top:8px; padding:13px 14px; border-radius:12px; border:1.5px solid var(--line);
+    font-family:'Inter',sans-serif; font-size:.95rem; color:var(--ink); background:#fff;
+    transition:border-color .2s ease, box-shadow .2s ease;
+  }
+  .field input:focus{outline:none; border-color:var(--blue-bright); box-shadow:0 0 0 4px rgba(47,127,232,0.12);}
+  .field input::placeholder{color:#A9B9D1;}
+  .pw-wrap{position:relative; display:flex; align-items:center;}
+  .pw-wrap input{padding-right:64px;}
+  .pw-toggle{
+    position:absolute; right:8px; background:none; border:none; cursor:pointer;
+    font-family:'Sora',sans-serif; font-weight:700; font-size:.74rem; color:var(--blue);
+    padding:8px 8px;
+  }
+  .pw-toggle:hover{text-decoration:underline;}
+
+  .auth-row{display:flex; align-items:center; justify-content:space-between; margin:-6px 0 22px; flex-wrap:wrap; gap:8px;}
+  .remember{display:flex; align-items:center; gap:8px; font-family:'Sora',sans-serif; font-size:.82rem; color:var(--ink-soft); font-weight:500;}
+  .remember input{accent-color:var(--blue-bright); width:15px; height:15px;}
+  .link-btn{background:none; border:none; cursor:pointer; font-family:'Sora',sans-serif; font-weight:600; font-size:.82rem; color:var(--blue); padding:0;}
+  .link-btn:hover{text-decoration:underline;}
+
+  .auth-divider{display:flex; align-items:center; gap:14px; margin:26px 0 18px; color:var(--ink-soft); font-family:'Sora',sans-serif; font-size:.78rem;}
+  .auth-divider::before,.auth-divider::after{content:""; flex:1; height:1px; background:var(--line);}
+
+  @media (max-width:900px){
+    .auth-side{display:none;}
+    .auth-grid{grid-template-columns:1fr; max-width:440px; border-radius:22px;}
+    .auth-form-panel{padding:40px 28px;}
+  }
+  @media (max-width:480px){
+    .auth-shell{padding:24px 16px;}
+    .auth-form-panel{padding:32px 22px;}
+    .auth-card h2{font-size:1.4rem;}
+  }
+
+  /* ---------- FOOTER ---------- */
+  .auth-footer{padding:22px 0; text-align:center; font-size:.78rem; color:var(--ink-soft);}
+  .auth-footer a{color:var(--blue); font-weight:600;}
+  .auth-footer a:hover{text-decoration:underline;}
+
+  /* ---------- WHATSAPP FLOATING BUTTON ---------- */
+  .whatsapp-fab{
+    position:fixed; right:24px; bottom:24px; z-index:150;
+    width:58px; height:58px; border-radius:50%;
+    background:#25D366; display:flex; align-items:center; justify-content:center;
+    box-shadow:0 10px 26px rgba(37,211,102,0.45);
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .whatsapp-fab:hover{transform:scale(1.08); box-shadow:0 14px 32px rgba(37,211,102,0.55);}
+  .whatsapp-fab::before{
+    content:""; position:absolute; inset:0; border-radius:50%; background:#25D366; opacity:.55; z-index:-1;
+    animation:waPulse 2.4s ease-out infinite;
+  }
+  @keyframes waPulse{ 0%{transform:scale(1); opacity:.55;} 100%{transform:scale(1.9); opacity:0;} }
+  .whatsapp-fab svg{position:relative; z-index:1;}
+  @media (max-width:600px){ .whatsapp-fab{width:52px; height:52px; right:16px; bottom:16px;} .whatsapp-fab svg{width:26px; height:26px;} }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap auth-nav">
+    <a href="index.html" class="brand">
+      <div class="brand-mark">LR</div>
+      <div class="brand-text">
+        <div class="name">Lanka Rasanjana</div>
+        <div class="sub">English Learning Academy</div>
+      </div>
+    </a>
+    <a href="index.html" class="back-link">← Back to home</a>
+  </div>
+</header>
+
+<main class="auth-shell">
+  <div class="auth-grid">
+
+    <!-- LEFT: brand panel -->
+    <div class="auth-side">
+      <div class="auth-side-inner">
+        <div class="eyebrow on-dark">Student Portal</div>
+        <h1>Everything for your English classes, in one place.</h1>
+        <p>Join live sessions, rewatch any recorded lesson, and download your tutes — all from your dashboard.</p>
+        <ul class="side-list">
+          <li><span class="chk">✓</span> Live class links &amp; reminders</li>
+          <li><span class="chk">✓</span> Full recorded lesson library</li>
+          <li><span class="chk">✓</span> Tutes and past papers</li>
+        </ul>
+        <div class="side-stats">
+          <div><strong>4,200+</strong><span>Active students</span></div>
+          <div><strong>380+</strong><span>Recorded lessons</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: form panel -->
+    <div class="auth-form-panel">
+      <div class="auth-card">
+
+        <!-- SIGN IN -->
+        <div id="signInMode">
+          <div class="eyebrow">Student Login</div>
+          <h2 style="margin-top:12px;">Welcome back</h2>
+          <p class="auth-sub">Sign in to continue to your classes.</p>
+
+          <div class="form-msg" id="signInMsg" hidden></div>
+
+          <form id="loginForm">
+            <label class="field">Email or Student ID
+              <input type="text" id="loginId" autocomplete="username" required placeholder="you@example.com" />
+            </label>
+            <label class="field">Password
+              <div class="pw-wrap">
+                <input type="password" id="loginPw" autocomplete="current-password" required placeholder="Enter your password" />
+                <button type="button" class="pw-toggle" id="pwToggle">SHOW</button>
+              </div>
+            </label>
+            <div class="auth-row">
+              <label class="remember"><input type="checkbox" /> Remember me</label>
+              <button type="button" class="link-btn" id="forgotBtn">Forgot password?</button>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block" id="signInSubmit">Sign In</button>
+          </form>
+
+          <div class="auth-divider"><span>New here?</span></div>
+          <a href="index.html#courses" class="btn btn-ghost btn-block">Enroll in a Class</a>
+        </div>
+
+        <!-- FORGOT PASSWORD -->
+        <div id="forgotMode" hidden>
+          <div class="eyebrow">Reset Password</div>
+          <h2 style="margin-top:12px;">Forgot your password?</h2>
+          <p class="auth-sub">Enter your email and we'll help you get back into your account.</p>
+
+          <div class="form-msg" id="forgotMsg" hidden></div>
+
+          <form id="forgotForm">
+            <label class="field">Email
+              <input type="email" id="forgotEmail" autocomplete="email" required placeholder="you@example.com" />
+            </label>
+            <button type="submit" class="btn btn-primary btn-block" id="forgotSubmit">Send Reset Link</button>
+          </form>
+          <button type="button" class="link-btn" id="backToSignIn" style="margin-top:20px;">← Back to Sign In</button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="auth-footer">
+  <div class="wrap">© 2026 Lanka Rasanjana English Academy · <a href="index.html">Back to home</a></div>
+</footer>
+
+<!-- WHATSAPP FLOATING BUTTON -->
+<a href="https://wa.me/94771234567?text=Hi%2C%20I%27m%20having%20trouble%20logging%20in"
+   class="whatsapp-fab" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp">
+  <svg viewBox="0 0 24 24" width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M6.6 10.8c1.4 2.8 3.7 5.1 6.5 6.5l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4.1c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.3 0 .7-.2 1L6.6 10.8Z" fill="#fff"/>
+  </svg>
+</a>
+
+<script>
+  // Password show/hide
+  const pwInput = document.getElementById('loginPw');
+  const pwToggle = document.getElementById('pwToggle');
+  pwToggle.addEventListener('click', () => {
+    const show = pwInput.type === 'password';
+    pwInput.type = show ? 'text' : 'password';
+    pwToggle.textContent = show ? 'HIDE' : 'SHOW';
+  });
+
+  // Sign in / forgot password mode toggle
+  const signInMode = document.getElementById('signInMode');
+  const forgotMode = document.getElementById('forgotMode');
+  document.getElementById('forgotBtn').addEventListener('click', () => {
+    signInMode.hidden = true; forgotMode.hidden = false;
+  });
+  document.getElementById('backToSignIn').addEventListener('click', () => {
+    forgotMode.hidden = true; signInMode.hidden = false;
+  });
+
+  // Forms are not yet connected to a backend — see chat for setup guidance.
+  // This gives a polished, honest placeholder response instead of doing nothing.
+  function wireForm(formId, btnId, msgId, successText){
+    const form = document.getElementById(formId);
+    const btn = document.getElementById(btnId);
+    const msg = document.getElementById(msgId);
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if(!form.checkValidity()){ form.reportValidity(); return; }
+      const original = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Please wait…';
+      msg.hidden = true;
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.textContent = original;
+        msg.textContent = successText;
+        msg.hidden = false;
+      }, 800);
+    });
+  }
+  wireForm('loginForm', 'signInSubmit', 'signInMsg', "Online sign-in isn't switched on yet — please check back soon, or message us on WhatsApp if it's urgent.");
+  wireForm('forgotForm', 'forgotSubmit', 'forgotMsg', "Password reset isn't switched on yet — message us on WhatsApp and we'll help you directly.");
+</script>
+
+</body>
+</html>
